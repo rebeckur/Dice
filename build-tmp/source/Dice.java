@@ -24,7 +24,6 @@ public void draw()
 	//your code here
 	for (int i = 10; i < 400; i+=80){
 		Die me = new Die(i, 50);
-		me.roll();
 		me.show();
 	}
 
@@ -48,9 +47,26 @@ class Die //models one single dice cube
 	} //constructor
 	public void roll()
 	{
+		rollNum = (int)(Math.random()*6)+1;
+
+		int topX = myX + 30;
+		int centerY = myY + 25;
+		int topY = myY + 10;
 		//your code here
-		if ((int)(Math.random()*6)+1 == 6){
-			rollNum = 6;
+		fill(0);
+		if (rollNum == 6){
+			//ellipse(myX+10, topY, 5, 5);
+		} else if (rollNum == 5){
+			ellipse(myX+10, topY, 5, 5);
+			ellipse(myX+30, topY, 5, 5);
+		} else if (rollNum == 4){
+			
+		} else if (rollNum == 3){
+
+		} else if (rollNum == 2){
+
+		} else {
+			ellipse(myX+25, topY, 5, 5);
 		}
 		
 	}
@@ -58,8 +74,9 @@ class Die //models one single dice cube
 	{
 		//your code here
 		fill(255);
-		rect(myX, myY, 60, 60);
-		text(rollNum, 50, 50);
+		rect(myX, myY, 50, 50);
+		roll();
+		
 
 	}
 }
