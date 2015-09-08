@@ -22,9 +22,11 @@ public void setup()
 public void draw()
 {
 	//your code here
-	for (int i = 10; i < 400; i+=80){
-		Die me = new Die(i, 50);
-		me.show();
+	for (int i = 10; i < 370; i+=55){
+		for (int j = 15; j < 400; j+=55){
+			Die me = new Die(i, j);
+			me.show();
+		}
 	}
 
 }
@@ -49,24 +51,56 @@ class Die //models one single dice cube
 	{
 		rollNum = (int)(Math.random()*6)+1;
 
-		int topX = myX + 30;
+		//dice positions
+		int x = myX + 15;
 		int centerY = myY + 25;
-		int topY = myY + 10;
-		//your code here
+		int centerX = myX + 25;
+		int topY = myY + 15;
+		int bottomY = myY + 35;
+
 		fill(0);
+
 		if (rollNum == 6){
-			//ellipse(myX+10, topY, 5, 5);
+			//top 2 dots
+			ellipse(x, topY, 5, 5); //left
+			ellipse(x+20, topY, 5, 5); //right
+			//center 2 dots
+			ellipse(x, centerY, 5, 5); //left
+			ellipse(x+20, centerY, 5, 5); //right
+			//lower 2 dots
+			ellipse(x, bottomY, 5, 5); //left
+			ellipse(x+20, bottomY, 5, 5); //right
 		} else if (rollNum == 5){
-			ellipse(myX+10, topY, 5, 5);
-			ellipse(myX+30, topY, 5, 5);
+			//top 2 dots
+			ellipse(x, topY, 5, 5); //left
+			ellipse(x+20, topY, 5, 5); //right
+			//center dot
+			ellipse(centerX, centerY, 5, 5);
+			//lower 2 dots
+			ellipse(x, bottomY, 5, 5); //left
+			ellipse(x+20, bottomY, 5, 5); //right
 		} else if (rollNum == 4){
-			
+			//top 2 dots
+			ellipse(x, topY, 5, 5); //left
+			ellipse(x+20, topY, 5, 5); //right
+			//lower 2 dots
+			ellipse(x, bottomY, 5, 5); //left
+			ellipse(x+20, bottomY, 5, 5); //right
 		} else if (rollNum == 3){
-
+			//top dot
+			ellipse(x+20, topY, 5, 5); //right
+			//center dot
+			ellipse(centerX, centerY, 5, 5);
+			//bottom dot
+			ellipse(x, bottomY, 5, 5); //left
 		} else if (rollNum == 2){
-
+			//top dot
+			ellipse(x+20, topY, 5, 5); 
+			//bottom dot
+			ellipse(x, bottomY, 5, 5);
 		} else {
-			ellipse(myX+25, topY, 5, 5);
+			//center dot
+			ellipse(myX+25, centerY, 5, 5);
 		}
 		
 	}
@@ -77,7 +111,6 @@ class Die //models one single dice cube
 		rect(myX, myY, 50, 50);
 		roll();
 		
-
 	}
 }
   static public void main(String[] passedArgs) {
