@@ -42,6 +42,9 @@ class Die //models one single dice cube
 
 	int rollNum;
 
+	int randR = (int)(Math.random()*150)+50;
+	int randB = (int)(Math.random()*256);
+
 	Die (int x, int y) 
 	{
 		myX = x;
@@ -58,7 +61,7 @@ class Die //models one single dice cube
 		int topY = myY + 15;
 		int bottomY = myY + 35;
 
-		fill(0);
+		fill(randR, 50, randB);
 
 		if (rollNum == 6){
 			//top 2 dots
@@ -109,8 +112,7 @@ class Die //models one single dice cube
 		//your code here
 		fill(255);
 		rect(myX, myY, 50, 50);
-		roll();
-		
+		roll();	
 	}
 }
   static public void main(String[] passedArgs) {
