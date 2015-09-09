@@ -1,13 +1,13 @@
 void setup()
 {
 	noLoop();
-	size(400,400);
+	size(400,450);
 }
 void draw()
 {
-	//your code here
-	for (int i = 10; i < 370; i+=55){
-		for (int j = 15; j < 400; j+=55){
+	background(155,155,155);
+	for (int j = 15; j < 400; j+=55){
+		for (int i = 10; i < 370; i+=55){
 			Die me = new Die(i, j);
 			me.show();
 		}
@@ -18,16 +18,19 @@ void mousePressed()
 {
 	redraw();
 }
-class Die //models one single dice cube
+class Die
 {
-	//variable declarations here
 	int myX;
 	int myY;
 
 	int rollNum;
 
-	int randR = (int)(Math.random()*150)+50;
-	int randB = (int)(Math.random()*256);
+	//for the colors!
+	int randR = (int)(Math.random()*150)+100;
+	int randG = (int)(Math.random()*60);
+	int randB = (int)(Math.random()*106)+100;
+
+	int total;
 
 	Die (int x, int y) 
 	{
@@ -45,7 +48,7 @@ class Die //models one single dice cube
 		int topY = myY + 15;
 		int bottomY = myY + 35;
 
-		fill(randR, 50, randB);
+		fill(randR, randG, randB);
 
 		if (rollNum == 6){
 			//top 2 dots
@@ -57,6 +60,7 @@ class Die //models one single dice cube
 			//lower 2 dots
 			ellipse(x, bottomY, 5, 5); //left
 			ellipse(x+20, bottomY, 5, 5); //right
+			total = total + 6;
 		} else if (rollNum == 5){
 			//top 2 dots
 			ellipse(x, topY, 5, 5); //left
@@ -66,6 +70,7 @@ class Die //models one single dice cube
 			//lower 2 dots
 			ellipse(x, bottomY, 5, 5); //left
 			ellipse(x+20, bottomY, 5, 5); //right
+			total +=5;
 		} else if (rollNum == 4){
 			//top 2 dots
 			ellipse(x, topY, 5, 5); //left
@@ -73,6 +78,7 @@ class Die //models one single dice cube
 			//lower 2 dots
 			ellipse(x, bottomY, 5, 5); //left
 			ellipse(x+20, bottomY, 5, 5); //right
+			total +=4;
 		} else if (rollNum == 3){
 			//top dot
 			ellipse(x+20, topY, 5, 5); //right
@@ -80,22 +86,29 @@ class Die //models one single dice cube
 			ellipse(centerX, centerY, 5, 5);
 			//bottom dot
 			ellipse(x, bottomY, 5, 5); //left
+			total +=3;
 		} else if (rollNum == 2){
 			//top dot
 			ellipse(x+20, topY, 5, 5); 
 			//bottom dot
 			ellipse(x, bottomY, 5, 5);
+			total +=2;
 		} else {
 			//center dot
 			ellipse(myX+25, centerY, 5, 5);
+			total++;
 		}
-		
 	}
 	void show()
 	{
-		//your code here
 		fill(255);
-		rect(myX, myY, 50, 50);
-		roll();	
+		stroke(4);
+		rect(myX, myY, 50, 50); //dice body
+
+		roll();	//calling the roll
+		
+		fill(255);
+		textSize(18);
+		System.out.println(total);
 	}
 }
