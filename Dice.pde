@@ -109,6 +109,5 @@ class Die
 		
 		fill(255);
 		textSize(18);
-		System.out.println(total);
 	}
 }

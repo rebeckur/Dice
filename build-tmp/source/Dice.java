@@ -125,7 +125,6 @@ class Die
 		
 		fill(255);
 		textSize(18);
-		System.out.println(total);
 	}
 }
   static public void main(String[] passedArgs) {
