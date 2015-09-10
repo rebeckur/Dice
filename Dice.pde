@@ -6,13 +6,21 @@ void setup()
 void draw()
 {
 	background(155,155,155);
+	int sum = 0;
+	int six = 0;
 	for (int j = 15; j < 400; j+=55){
 		for (int i = 10; i < 370; i+=55){
 			Die me = new Die(i, j);
 			me.show();
+			sum = sum + me.rollNum;
+			if (me.rollNum == 6){
+				six++;
+			}
 		}
 	}
-
+	textSize(24);
+	text("Sum: " + sum, 10, 430);
+	text("Number of Sixes: " + six, 150, 430);
 }
 void mousePressed()
 {
@@ -30,13 +38,12 @@ class Die
 	int randG = (int)(Math.random()*60);
 	int randB = (int)(Math.random()*106)+100;
 
-	int total;
-
 	Die (int x, int y) 
 	{
 		myX = x;
 		myY = y;
 	} //constructor
+
 	void roll()
 	{
 		rollNum = (int)(Math.random()*6)+1;
@@ -60,7 +67,6 @@ class Die
 			//lower 2 dots
 			ellipse(x, bottomY, 5, 5); //left
 			ellipse(x+20, bottomY, 5, 5); //right
-			total = total + 6;
 		} else if (rollNum == 5){
 			//top 2 dots
 			ellipse(x, topY, 5, 5); //left
@@ -70,15 +76,13 @@ class Die
 			//lower 2 dots
 			ellipse(x, bottomY, 5, 5); //left
 			ellipse(x+20, bottomY, 5, 5); //right
-			total +=5;
 		} else if (rollNum == 4){
 			//top 2 dots
 			ellipse(x, topY, 5, 5); //left
 			ellipse(x+20, topY, 5, 5); //right
 			//lower 2 dots
 			ellipse(x, bottomY, 5, 5); //left
-			ellipse(x+20, bottomY, 5, 5); //right
-			total +=4;
+			ellipse(x+20, bottomY, 5, 5); //right	
 		} else if (rollNum == 3){
 			//top dot
 			ellipse(x+20, topY, 5, 5); //right
@@ -86,19 +90,17 @@ class Die
 			ellipse(centerX, centerY, 5, 5);
 			//bottom dot
 			ellipse(x, bottomY, 5, 5); //left
-			total +=3;
 		} else if (rollNum == 2){
 			//top dot
 			ellipse(x+20, topY, 5, 5); 
 			//bottom dot
 			ellipse(x, bottomY, 5, 5);
-			total +=2;
 		} else {
 			//center dot
 			ellipse(myX+25, centerY, 5, 5);
-			total++;
 		}
 	}
+
 	void show()
 	{
 		fill(255);
